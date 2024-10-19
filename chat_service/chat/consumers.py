@@ -11,7 +11,7 @@ class GameConsumer(AsyncWebsocketConsumer):
 		await self.accept()
 
 	async def disconnect(self, close_code):
-		if 'user_id' in self:
+		if self.user_id:
 			connected_users.pop(self.user_id)
 		print("Client disconnected")
 

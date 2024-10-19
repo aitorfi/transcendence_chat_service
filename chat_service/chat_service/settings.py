@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&!z8p8+jz*cvu=(7()5dt4dasja0ps%@540_29=-icb20tdb$u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'channels',
+	'chat'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat_service.wsgi.application'
+ASGI_APPLICATION = 'chat_service.asgi.application'
 
 
 # Database

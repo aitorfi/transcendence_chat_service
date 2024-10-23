@@ -1,4 +1,15 @@
 services:
+  postgres:
+    container_name: chat_service_postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: chat-db
+    restart: unless-stopped
+    networks:
+      - net
+
   chat-service:
     container_name: chat_service
     build: .
@@ -8,3 +19,11 @@ services:
     volumes:
       - ./chat_service:/usr/src/app
     restart: unless-stopped
+    networks:
+      - net
+    depends_on:
+      - postgres
+
+networks:
+  net:
+    driver: bridge

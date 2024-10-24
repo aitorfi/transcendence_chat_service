@@ -28,3 +28,9 @@ def get_pending_friend_requests_by_sender(request, sender_id):
     
     # Devolvemos los datos en formato JSON
     return Response(serializer.data)
+
+@api_view(['GET'])
+def get_pending_friend_requests_by_recipient(request, recipient_id):
+	friend_requests = FriendRequest.objects.filter(user_recipient=recipient_id, status=FriendRequest.Status.PENDING)
+	serializer = FriendRequestSerializer(friend_requests, many=True)
+	return Response(serializer.data)
